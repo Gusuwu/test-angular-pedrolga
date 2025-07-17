@@ -1,0 +1,36 @@
+.filtros-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+.filtros-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filtros-form label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.filtros-form input,
+.filtros-form select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  min-width: 200px;
+}
+
+.filtros-form input:focus,
+.filtros-form select:focus {
+  border-color: #5f2eea;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(95, 46, 234, 0.2);
+}

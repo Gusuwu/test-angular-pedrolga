@@ -1,0 +1,60 @@
+<div class="container mx-auto p-4 max-w-4xl">
+
+  <div *ngIf="error$()" class="text-red-600 mb-4">
+    {{ error$() }}
+  </div>
+
+  <app-formulario-usuarios
+    [usuario]="usuario()"
+    (guardar)="guardarUsuario($event)"
+  ></app-formulario-usuarios>
+
+    <form [formGroup]="formFiltros" class="filtros-form">
+    <input
+      type="text"
+      formControlName="busqueda"
+      placeholder="Buscar por nombre o apellido"
+      class="border border-gray-300 rounded p-2 w-full sm:w-auto"
+    />
+    <select formControlName="rol">"
+      class="border border-gray-300 rounded p-2 w-full sm:w-auto"
+    >
+      <option value="">Todos los roles</option>
+      <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+    </select>
+  </form>
+
+  <app-loading *ngIf="loading$()" class="spinner" />
+
+  <div *ngIf="!loading$()">
+    <div *ngIf="usuarios$().length === 0" class="mensaje-vacio">
+      No hay usuarios.
+    </div>
+
+    <app-lista-usuarios
+      [usuarios]="usuarios$()"
+      (editar)="editarUsuario($event)"
+      (eliminar)="eliminarUsuario($event)"
+    ></app-lista-usuarios>
+
+    <div class="flex justify-between mt-4 items-center">
+      <button
+        (click)="cambiarPagina('prev')"
+        [disabled]="page() === 1"
+        class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300"
+      >
+        Anterior
+      </button>
+
+      <span>Página {{ page() }} de {{ totalPages$() }}</span>
+
+      <button
+        (click)="cambiarPagina('next')"
+        [disabled]="page() === totalPages$()"
+        class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300"
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+</div>

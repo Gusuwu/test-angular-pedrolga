@@ -1,0 +1,24 @@
+<div *ngIf="usuarios.length === 0" class="mensaje-vacio">No hay usuarios.</div>
+
+<ul class="usuarios-lista">
+  <li *ngFor="let u of usuarios" class="usuario-item">
+    <div class="usuario-info">
+      <strong>{{ u.nombre }} {{ u.apellido }}</strong><br />
+      <span>{{ u.email }}</span> – <em>{{ u.rol || 'Sin rol' }}</em>
+    </div>
+    <div class="usuario-acciones">
+      <button (click)="editar.emit(u)">Editar</button>
+      <button (click)="eliminar.emit(u.id)">Eliminar</button>
+    </div>
+  </li>
+</ul>
+
+<nav class="paginacion">
+  <button
+    *ngFor="let page of paginas()"
+    (click)="cambiarPagina.emit(page)"
+    [class.activo]="paginaActual === page"
+  >
+    {{ page }}
+  </button>
+</nav>

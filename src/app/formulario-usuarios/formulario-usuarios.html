@@ -1,0 +1,19 @@
+<form [formGroup]="form" class="formulario" (ngSubmit)="guardarUsuario()">
+  <label>Nombre:
+    <input formControlName="nombre" />
+  </label>
+  <label>Apellido:
+    <input formControlName="apellido" />
+  </label>
+  <label>Email:
+    <input formControlName="email" />
+  </label>
+  <label>Rol:
+    <select formControlName="rol">
+      <option value="">(ninguno)</option>
+      <option value="Admin">Admin</option>
+      <option value="User">User</option>
+    </select>
+  </label>
+  <button type="submit">Guardar</button>
+</form>
